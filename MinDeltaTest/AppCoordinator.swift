@@ -36,6 +36,9 @@ class AppCoordinator {
     
     private func goToTest(of type: TestType) {
         let viewModel = TestViewModel(parser: DatParser(), type: type)
+        viewModel.backClosure = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
         viewModel.parseModels()
         let view = TestView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)

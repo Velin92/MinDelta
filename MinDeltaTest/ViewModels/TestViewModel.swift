@@ -13,7 +13,11 @@ class TestViewModel: ObservableObject {
     @Published private var cellViewModels = [ListCellViewModel]()
     @Published private var type: TestType
     @Published var isFiltering = false
+    
+    var backClosure: (()->Void)?
     private let parser: Parser
+    
+    let backButtonText = "Back"
     
     var filteredCellViewModels: [ListCellViewModel]  {
         if !isFiltering {
@@ -87,5 +91,9 @@ class TestViewModel: ObservableObject {
         if let results = results {
             cellViewModels = results.compactMap(ListCellViewModel.init)
         }
+    }
+    
+    func back() {
+        backClosure?()
     }
 }

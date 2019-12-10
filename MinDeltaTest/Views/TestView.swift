@@ -34,6 +34,9 @@ struct TestView: View {
                     ListCellView(viewModel: viewModel)
                 }
             }.navigationBarTitle(viewModel.testName)
+                .navigationBarItems(leading: Button(action: viewModel.back) {
+                    Text(viewModel.backButtonText)
+            })
         }
     }
 }
