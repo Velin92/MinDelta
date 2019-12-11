@@ -15,8 +15,6 @@ enum ParserError: Error {
 protocol Parser {
     func parseFootballTeams() throws -> [FootballTeamModel]
     func parseWeather() throws -> [WeatherDayModel]
-    func parseFootballTeams(from bundle: Bundle, named: String) throws -> [FootballTeamModel]
-    func parseWeather(from bundle: Bundle, named: String) throws -> [WeatherDayModel]
 }
 
 class DatParser: Parser {
@@ -29,7 +27,7 @@ class DatParser: Parser {
     }
     
     
-       func parseWeather(from bundle: Bundle, named: String) throws -> [WeatherDayModel] {
+    func parseWeather(from bundle: Bundle, named: String) throws -> [WeatherDayModel] {
         guard let url = bundle.url(forResource: named, withExtension: "dat") else {
             throw ParserError.fileNotFound
         }
@@ -45,13 +43,13 @@ class DatParser: Parser {
         guard lineElements.count >= 3,
             let day = Int (lineElements[0]),
             let maxTemperature = Int(lineElements[1]),
-        //since the original data has a min value with a *, this requires a little trick to actually filter only
-        //not sure if inteded, an error, or a special character but for now I'll just use this trick on the third element
-        //it just separates characters that are digits, and discards the non digits characters, and then joins them again.
+            //since the original data has a min value with a *, this requires a little trick to actually filter only
+            //not sure if inteded, an error, or a special character but for now I'll just use this trick on the third element
+            //it just separates characters that are digits, and discards the non digits characters, and then joins them again.
             let minTemperature = Int(lineElements[2].components(separatedBy: CharacterSet.decimalDigits.inverted)
                 .joined())
-        else {
-            return nil
+            else {
+                return nil
         }
         return WeatherDayModel(day: day, maxTemperature: maxTemperature, minTemperature: minTemperature)
     }

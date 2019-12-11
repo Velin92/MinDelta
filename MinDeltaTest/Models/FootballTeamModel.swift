@@ -9,6 +9,7 @@
 import Foundation
 
 struct FootballTeamModel: Deltable {
+    let metric = ""
     //I am also considering negative values here
     var delta: Int {
         return value1 - value2

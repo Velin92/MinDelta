@@ -10,20 +10,22 @@ import Foundation
 
 class ListCellViewModel: Identifiable {
     
-    var id: String {
+    let id = UUID()
+    
+    var name: String {
         return model.id
     }
     
-    var value1: Int {
-        return model.value1
+    var value1: String {
+        return "\(model.value1)\(model.metric)"
     }
     
-    var value2: Int {
-        return model.value2
+    var value2: String {
+        return "\(model.value2)\(model.metric)"
     }
     
     var delta: Int {
-        return value1 - value2
+        return model.value1 - model.value2
     }
     
     let model: Deltable

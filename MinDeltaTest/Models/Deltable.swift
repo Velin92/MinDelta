@@ -9,9 +9,9 @@
 import Foundation
 
 protocol Deltable {
+    var metric: String {get}
     var id: String {get}
     var value1: Int {get}
     var value2: Int {get}
-    
     var delta: Int {get}
 }

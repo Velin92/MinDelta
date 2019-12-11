@@ -9,6 +9,8 @@
 import Foundation
 
 struct WeatherDayModel: Deltable {
+    let metric = "F"
+    
     var delta: Int {
         return value2 - value1
     }

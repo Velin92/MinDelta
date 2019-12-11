@@ -42,9 +42,9 @@ struct TestView: View {
                     }
                 }
             }.navigationBarTitle(viewModel.testName)
-            .navigationBarItems(leading: Button(action: viewModel.back) {
-                Text(viewModel.backButtonText)
-            })
+                .navigationBarItems(leading: Button(action: viewModel.back) {
+                    Text(viewModel.backButtonText)
+                })
         }
     }
 }
@@ -53,6 +53,8 @@ struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         let testViewModel = TestViewModel(parser: DatParser(), type: .football)
         testViewModel.parseModels()
+        //testViewModel.exception = .error
+        //testViewModel.exception = .empty
         return TestView(viewModel: testViewModel)
     }
 }

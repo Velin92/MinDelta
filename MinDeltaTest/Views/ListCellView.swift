@@ -14,7 +14,7 @@ struct ListCellView: View {
     
     var body: some View {
         HStack {
-            Text(viewModel.id)
+            Text(viewModel.name)
             Spacer()
             Text("\(viewModel.value1)")
             Text("\(viewModel.value2)")
