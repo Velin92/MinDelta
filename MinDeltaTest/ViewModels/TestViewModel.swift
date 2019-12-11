@@ -8,11 +8,18 @@
 
 import Foundation
 
+enum ExceptionModel {
+    case none
+    case empty
+    case error
+}
+
 class TestViewModel: ObservableObject {
     
     @Published private var cellViewModels = [ListCellViewModel]()
     @Published private var type: TestType
     @Published var isFiltering = false
+    @Published var exception = ExceptionModel.none
     
     var backClosure: (()->Void)?
     private let parser: Parser
@@ -27,6 +34,17 @@ class TestViewModel: ObservableObject {
                 return cellViewModels.filter({$0.delta == min})
             }
             return [ListCellViewModel]()
+        }
+    }
+    
+    var exceptionMessage: String {
+        switch exception {
+        case .error:
+            return "An error has occurred while fetching data"
+        case .empty:
+            return "Empty data"
+        default:
+            return ""
         }
     }
     
@@ -81,15 +99,22 @@ class TestViewModel: ObservableObject {
     }
     
     func parseModels() {
-        var results: [Deltable]?
-        switch type {
-        case .football:
-            results = try? parser.parseFootballTeams(from: Bundle.main)
-        case .weather:
-            results = try? parser.parseWeather(from: Bundle.main)
-        }
-        if let results = results {
-            cellViewModels = results.compactMap(ListCellViewModel.init)
+        do {
+            var results: [Deltable]?
+            switch type {
+            case .football:
+                results = try parser.parseFootballTeams()
+            case .weather:
+                results = try parser.parseWeather()
+            }
+            if let results = results {
+                cellViewModels = results.compactMap(ListCellViewModel.init)
+            }
+            if cellViewModels.isEmpty {
+                exception = .empty
+            }
+        } catch {
+            exception = .error
         }
     }
     

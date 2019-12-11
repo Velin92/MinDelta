@@ -14,28 +14,36 @@ struct TestView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                HStack {
-                    Toggle(isOn: $viewModel.isFiltering){
-                        Text(viewModel.switchMessage)
-                        .scaledToFit()
+            VStack {
+                if viewModel.exception != .none {
+                    VStack {
+                        Text(viewModel.exceptionMessage)
+                    }
+                } else {
+                    List {
+                        HStack {
+                            Toggle(isOn: $viewModel.isFiltering){
+                                Text(viewModel.switchMessage)
+                                    .scaledToFit()
+                            }
+                        }
+                        HStack {
+                            Text(viewModel.firstColumnName)
+                                .bold()
+                            Spacer()
+                            Text(viewModel.secondColumnName)
+                                .bold()
+                            Text(viewModel.thirdColumnName)
+                                .bold()
+                        }
+                        ForEach(viewModel.filteredCellViewModels) { viewModel in
+                            ListCellView(viewModel: viewModel)
+                        }
                     }
                 }
-                HStack {
-                    Text(viewModel.firstColumnName)
-                        .bold()
-                    Spacer()
-                    Text(viewModel.secondColumnName)
-                        .bold()
-                    Text(viewModel.thirdColumnName)
-                        .bold()
-                }
-                ForEach(viewModel.filteredCellViewModels) { viewModel in
-                    ListCellView(viewModel: viewModel)
-                }
             }.navigationBarTitle(viewModel.testName)
-                .navigationBarItems(leading: Button(action: viewModel.back) {
-                    Text(viewModel.backButtonText)
+            .navigationBarItems(leading: Button(action: viewModel.back) {
+                Text(viewModel.backButtonText)
             })
         }
     }

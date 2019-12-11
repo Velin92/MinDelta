@@ -13,14 +13,24 @@ enum ParserError: Error {
 }
 
 protocol Parser {
-    func parseFootballTeams(from bundle: Bundle) throws -> [FootballTeamModel]
-    func parseWeather(from bundle: Bundle) throws -> [WeatherDayModel]
+    func parseFootballTeams() throws -> [FootballTeamModel]
+    func parseWeather() throws -> [WeatherDayModel]
+    func parseFootballTeams(from bundle: Bundle, named: String) throws -> [FootballTeamModel]
+    func parseWeather(from bundle: Bundle, named: String) throws -> [WeatherDayModel]
 }
 
 class DatParser: Parser {
+    func parseFootballTeams() throws -> [FootballTeamModel] {
+        try parseFootballTeams(from: Bundle.main, named: "football")
+    }
     
-    func parseWeather(from bundle: Bundle) throws -> [WeatherDayModel] {
-        guard let url = bundle.url(forResource: "weather", withExtension: "dat") else {
+    func parseWeather() throws -> [WeatherDayModel] {
+        try parseWeather(from: Bundle.main, named: "weather")
+    }
+    
+    
+       func parseWeather(from bundle: Bundle, named: String) throws -> [WeatherDayModel] {
+        guard let url = bundle.url(forResource: named, withExtension: "dat") else {
             throw ParserError.fileNotFound
         }
         let weatherData = try String(contentsOf: url, encoding: .utf8)
@@ -46,8 +56,8 @@ class DatParser: Parser {
         return WeatherDayModel(day: day, maxTemperature: maxTemperature, minTemperature: minTemperature)
     }
     
-    func parseFootballTeams(from bundle: Bundle = Bundle.main) throws -> [FootballTeamModel] {
-        guard let url = bundle.url(forResource: "football", withExtension: "dat") else {
+    func parseFootballTeams(from bundle: Bundle, named: String) throws -> [FootballTeamModel] {
+        guard let url = bundle.url(forResource: named, withExtension: "dat") else {
             throw ParserError.fileNotFound
         }
         let footballData = try String(contentsOf: url, encoding: .utf8)

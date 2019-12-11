@@ -10,6 +10,7 @@
 		A76BA2A323A031320032C59A /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BA2A223A031320032C59A /* ListCellViewModel.swift */; };
 		A76BA2A523A045C90032C59A /* WeatherDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BA2A423A045C90032C59A /* WeatherDayModel.swift */; };
 		A76BA2A923A047CB0032C59A /* Deltable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BA2A823A047CB0032C59A /* Deltable.swift */; };
+		A76BA2AB23A06C9B0032C59A /* football_test.dat in Resources */ = {isa = PBXBuildFile; fileRef = A76BA2AA23A06C9B0032C59A /* football_test.dat */; };
 		A7A7539C239EFB5100860D68 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A7539B239EFB5100860D68 /* MainViewModel.swift */; };
 		A7A7539E239EFEA000860D68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A7539D239EFEA000860D68 /* AppCoordinator.swift */; };
 		A7BDD723239F988700298D09 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDD722239F988700298D09 /* TestView.swift */; };
@@ -50,6 +51,7 @@
 		A76BA2A223A031320032C59A /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		A76BA2A423A045C90032C59A /* WeatherDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayModel.swift; sourceTree = "<group>"; };
 		A76BA2A823A047CB0032C59A /* Deltable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deltable.swift; sourceTree = "<group>"; };
+		A76BA2AA23A06C9B0032C59A /* football_test.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = football_test.dat; sourceTree = "<group>"; };
 		A7A7539B239EFB5100860D68 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A7A7539D239EFEA000860D68 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A7BDD722239F988700298D09 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A76BA2AC23A06CA20032C59A /* Dats */ = {
+			isa = PBXGroup;
+			children = (
+				A76BA2AA23A06C9B0032C59A /* football_test.dat */,
+			);
+			path = Dats;
+			sourceTree = "<group>";
+		};
 		A7D51596239D765F00D88700 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +179,7 @@
 		A7D515B8239D766000D88700 /* MinDeltaTestTests */ = {
 			isa = PBXGroup;
 			children = (
+				A76BA2AC23A06CA20032C59A /* Dats */,
 				A7D515B9239D766000D88700 /* MinDeltaTestTests.swift */,
 				A7D515BB239D766000D88700 /* Info.plist */,
 			);
@@ -320,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76BA2AB23A06C9B0032C59A /* football_test.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
